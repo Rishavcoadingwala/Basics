@@ -1,0 +1,43 @@
+#include<stdio.h>
+//this is comment,delete it if you like
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *link;
+};
+struct node *head;
+void insert(int x)//inserting at the begining
+{
+    struct node * temp;
+    temp=(struct node *)malloc(sizeof(struct node));//now temp is officially a node
+    temp->data=x;//we use void when we either want to print something or we have to return nothing
+    temp->link=head;//intially when no nodes are created and if we insert temp then its next link will be null
+    head=temp;
+}
+void print()//for printing the result
+{
+    struct node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->link;
+    }
+}
+void main(void)
+{
+    head=NULL;//points to nowhere
+    printf("How many numbers you want to input? ");
+    int n;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        int x;
+        printf("\nEnter Data ");
+        scanf("%d",&x);
+        insert(x);
+        print();
+    }
+}
