@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *head;
+
+void insert_at_end(int value) {
+    struct node *temp;
+    temp = (struct node *)malloc(sizeof(struct node));
+    if (temp == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(1);
+    }
+    temp->data = value;
+    temp->next = NULL;
+
+    if (head == NULL) {
+        head = temp;
+        return;
+    }
+
+    struct node *ptr = head;
+    while (ptr->next != NULL) {
+        ptr = ptr->next;
+    }
+    ptr->next = temp;
+}
+
+void print() {
+    struct node *ptr = head;
+    while (ptr != NULL) {
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    head = NULL;
+    insert_at_end(5);
+    insert_at_end(10);
+    insert_at_end(15);
+    print();
+
+    return 0;
+}
